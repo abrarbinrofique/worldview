@@ -21,3 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+node_modules
+
+2cac0b51810f44dbae3ed3644d2c9aad
+ https://newsapi.org/v2/everything?q=keyword&apiKey=2cac0b51810f44dbae3ed3644d2c9aad
+ https://newsapi.org/v2/everything?q=Apple&from=2024-10-07&sortBy=popularity&apiKey=API_KEY
+  https://newsapi.org/v2/top-headlines?country=us&apiKey=2cac0b51810f44dbae3ed3644d2c9aad
