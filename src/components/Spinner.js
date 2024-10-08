@@ -5,6 +5,7 @@ export default class spinner extends Component {
   render() {
     return (
       <div>
+     
       <img src={load} alt='load'/>
       </div>
     )
