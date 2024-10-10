@@ -7,12 +7,14 @@ export class News extends Component {
   
   static defaultProps={
     country:'us',
-    pageSize:8
+    pageSize:8,
+    category:'general',
   }
 
   staticpropTypes={
     country:PropTypes.string,
-    pageSize:PropTypes.number
+    pageSize:PropTypes.number,
+    category:PropTypes.string
   }
 
   constructor(){
@@ -29,7 +31,7 @@ export class News extends Component {
   {    this.setState({ load: true })
 
 
-     let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=2cac0b51810f44dbae3ed3644d2c9aad&page=1&pageSize=${this.props.pageSize}`
+     let url=`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=2cac0b51810f44dbae3ed3644d2c9aad&page=1&pageSize=${this.props.pageSize}`
      let data=await fetch(url)
      let d=await data.json()
      console.log(d)
@@ -40,7 +42,7 @@ export class News extends Component {
     this.setState({ load: true })
     if( this.state.page>1)
     {
-        let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=2cac0b51810f44dbae3ed3644d2c9aad&page=${this.state.page-1}&pageSize=${this.props.pageSize}`
+        let url=`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=2cac0b51810f44dbae3ed3644d2c9aad&page=${this.state.page-1}&pageSize=${this.props.pageSize}`
         let data=await fetch(url)
         let d=await data.json()
         console.log(d)
@@ -61,7 +63,7 @@ export class News extends Component {
 
     this.setState({ load: true })
     console.log('next')
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=2cac0b51810f44dbae3ed3644d2c9aad&page=${this.state.page+1}&pageSize=${this.props.pageSize}`
+    let url=`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=2cac0b51810f44dbae3ed3644d2c9aad&page=${this.state.page+1}&pageSize=${this.props.pageSize}`
      let data=await fetch(url)
      let d=await data.json()
      console.log(d)
@@ -83,7 +85,9 @@ export class News extends Component {
          {!this.state.load && this.state.articles.map((el)=>{
              return (
                 <div className="col-md-4" key={el.url}> 
-            <NewsItem title={el.title} description={el.description} imageurl={el.urlToImage} url={el.url}/>
+            <NewsItem title={el.title} description={el.description} imageurl={el.urlToImage} url={el.url} author={el.author} publishedAt={el.publishedAt}
+            source={el.source}/>
+           
             </div>
             );
          })}
